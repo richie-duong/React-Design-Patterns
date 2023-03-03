@@ -1,28 +1,21 @@
-import { UserInfo } from "./UserInfo";
-import { DataSource } from "./DataSource";
-import axios from "axios";
-
-const getServerData = url => async () => {
-    const response = await axios.get(url);
-    return response.data
-}
-
-const getLocalStorageData = key => () => {
-  return localStorage.getItem(key)
-}
-
-const Text = ({ message }) => <h1>{message}</h1>
+import { useState } from "react";
+import { ControlledModal } from "./ControlledModal";
 
 function App() {
+  const [shouldShowModal, setShouldShowModal] = useState(false)
   return (
     <>
-      <DataSource getDataFunc={getServerData('/users/123')} resourceName="user">
-        <UserInfo />
-      </DataSource>
-      <DataSource getDataFunc={getLocalStorageData('message')} resourceName="message">
-        <Text />
-      </DataSource>
+      <ControlledModal
+        shouldShow={shouldShowModal}
+        onRequestClose={() => { setShouldShowModal(false) }}
+      >
+        <h1>Hello!</h1>
+      </ControlledModal>
+      <button onClick={() => setShouldShowModal(!shouldShowModal)}>
+        {shouldShowModal ? 'Hide Modal' : 'Show Modal'}
+      </button>
     </>
+
   )
 }
 
