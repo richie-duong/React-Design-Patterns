@@ -5,6 +5,7 @@ const app = express();
 app.use(express.json());
 
 let currentUser = {
+	id: '123',
 	name: 'John Doe',
 	age: 54,
 	hairColor: 'brown',
@@ -24,7 +25,7 @@ let users = [{
 	hairColor: 'black',
 	hobbies: ['golf', 'mathematics'],
 }, {
-	id: '456',
+	id: '345',
 	name: 'Jane Garcia',
 	age: 27,
 	hairColor: 'blonde',
